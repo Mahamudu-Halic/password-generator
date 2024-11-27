@@ -1,0 +1,242 @@
+@import url("../assets/fonts/JetBrainsMono-VariableFont_wght.ttf");
+@import url("../assets/fonts/JetBrainsMono-Italic-VariableFont_wght.ttf");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "JetBrains Mono", sans-serif;
+  background-color: #18171F;
+  color: #E6E5EA;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 8px;
+  user-select: none;
+}
+
+h1 {
+  text-align: center;
+  color: #817D92;
+  font-size: 18px;
+  font-weight: 200;
+}
+
+button {
+  cursor: pointer;
+}
+
+.password-generator {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.password-generator .password-container {
+  background: #24232C;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  width: 100%;
+  gap: 10px;
+  position: relative;
+}
+.password-generator .password-container #password {
+  font-size: 23px;
+  background: none;
+  border: none;
+  color: #E6E5EA;
+  width: 100%;
+}
+.password-generator .password-container #copy-password-btn {
+  border: none;
+  background: none;
+}
+.password-generator .password-container #copy-password-btn:hover img {
+  filter: brightness(200%);
+}
+.password-generator .password-container #status {
+  position: absolute;
+  right: 50px;
+  color: #E6E5EA;
+  background: #24232C;
+}
+.password-generator .password-settings {
+  background: #24232C;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+.password-generator .password-settings .char-length {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.password-generator .password-settings .char-length .char-length-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.password-generator .password-settings .char-length #char-length-value {
+  font-size: 23px;
+  color: #A4FFAF;
+}
+.password-generator .password-settings .char-length .slider-container {
+  width: 100%;
+}
+.password-generator .password-settings .char-length .slider-container input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  border: none;
+  border-radius: 15px;
+  background: #18171F;
+  cursor: pointer;
+}
+.password-generator .password-settings .char-length .slider-container input::-webkit-slider-runnable-track {
+  height: 10px;
+  border-radius: 5px;
+}
+.password-generator .password-settings .char-length .slider-container input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #E6E5EA;
+  border: solid 1px #E6E5EA;
+  cursor: pointer;
+  margin: -5px 0;
+}
+.password-generator .password-settings .char-length .slider-container input::-webkit-slider-thumb:hover {
+  background-color: #18171F;
+  border-color: #A4FFAF;
+}
+.password-generator .password-settings .password-input-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.password-generator .password-settings input[type=checkbox] {
+  display: none;
+}
+.password-generator .password-settings label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+}
+.password-generator .password-settings .custom-check {
+  width: 15px;
+  height: 15px;
+  border: 2px solid #E6E5EA;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.password-generator .password-settings input[type=checkbox]:checked + label .custom-check {
+  background-color: #A4FFAF;
+  border-color: #A4FFAF;
+  background-image: url("../assets/images/icon-check.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.password-generator .password-settings .strength-meter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  background: #18171F;
+}
+.password-generator .password-settings .strength-meter p {
+  font-size: 18px;
+  color: #817D92;
+  text-transform: uppercase;
+}
+.password-generator .password-settings .strength-meter #strength-status {
+  font-size: 23px;
+  color: #E6E5EA;
+}
+.password-generator .password-settings .strength-bar {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.password-generator .password-settings .strength-bar .bars {
+  display: flex;
+  gap: 8px;
+}
+.password-generator .password-settings .strength-bar .bars div {
+  width: 10px;
+  height: 35px;
+  border: solid 1px #E6E5EA;
+}
+.password-generator .password-settings .strength-bar .bars .very-weak-password {
+  background: #F64A4A;
+  border-color: #F64A4A;
+}
+.password-generator .password-settings .strength-bar .bars .weak-password {
+  background: #FB7C58;
+  border-color: #FB7C58;
+}
+.password-generator .password-settings .strength-bar .bars .medium-password {
+  background: #F8CD65;
+  border-color: #F8CD65;
+}
+.password-generator .password-settings .strength-bar .bars .strong-password {
+  background: #A4FFAF;
+  border-color: #A4FFAF;
+}
+.password-generator .password-settings #generate-btn {
+  text-transform: uppercase;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background-color: #A4FFAF;
+  font-weight: 600;
+  border: solid 1px #A4FFAF;
+  width: 100%;
+}
+.password-generator .password-settings #generate-btn:hover {
+  background-color: transparent;
+  color: #A4FFAF;
+}
+.password-generator .password-settings #generate-btn:hover img {
+  filter: invert(90%) sepia(50%) saturate(296%) hue-rotate(90deg) brightness(100%) contrast(100%);
+}
+.password-generator .password-settings #toast {
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  position: fixed;
+  top: 20px;
+  opacity: 0;
+  scale: 0.8;
+  transition: all 0.5s ease-in-out;
+}
+.password-generator .password-settings #toast.success {
+  color: #24232C;
+  background: #A4FFAF;
+  opacity: 1;
+  scale: 1;
+}
+.password-generator .password-settings #toast.error {
+  opacity: 1;
+  scale: 1;
+  background: #F64A4A;
+}
+
+/*# sourceMappingURL=styles.css.map */

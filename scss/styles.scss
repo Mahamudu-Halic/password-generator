@@ -1,0 +1,279 @@
+@use "variables";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: variables.$font;
+  background-color: variables.$primaryBg;
+  color: variables.$primaryText;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: variables.$space-xs;
+  user-select: none;
+}
+
+h1 {
+  text-align: center;
+  color: variables.$secondaryText;
+  font-size: variables.$text-sm;
+  font-weight: 200;
+}
+
+button {
+  cursor: pointer;
+}
+
+.password-generator {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: variables.$space-md;
+
+  .password-container {
+    background: variables.$secondaryBg;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: variables.$space-sm;
+    width: 100%;
+    gap: 10px;
+    position: relative;
+
+    #password {
+      font-size: variables.$text-md;
+      background: none;
+      border: none;
+      color: variables.$primaryText;
+      width: 100%;
+    }
+
+    #copy-password-btn {
+      border: none;
+      background: none;
+
+      &:hover img {
+        filter: brightness(200%);
+      }
+    }
+
+    #status {
+      position: absolute;
+      right: 50px;
+      color: variables.$primaryText;
+      background: variables.$secondaryBg;
+    }
+  }
+
+
+  .password-settings {
+    background: variables.$secondaryBg;
+    padding: variables.$space-md;
+    display: flex;
+    flex-direction: column;
+    gap: variables.$space-md;
+    width: 100%;
+
+    .char-length {
+      display: flex;
+      flex-direction: column;
+      gap: variables.$space-md;
+
+      .char-length-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      #char-length-value {
+        font-size: variables.$text-md;
+        color: variables.$strongColor;
+      }
+
+      .slider-container {
+        width: 100%;
+
+        input {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 100%;
+          border: none;
+          border-radius: 15px;
+          background: variables.$primaryBg;
+          cursor: pointer;
+
+          &::-webkit-slider-runnable-track {
+            //background: variables.$primaryBg;
+            height: 10px;
+            border-radius: 5px;
+          }
+
+          &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: variables.$primaryText;
+            border: solid 1px variables.$primaryText;
+            cursor: pointer;
+            margin: -5px 0;
+          }
+
+          &::-webkit-slider-thumb:hover {
+            background-color: variables.$primaryBg;
+            border-color: variables.$strongColor;
+          }
+
+        }
+      }
+    }
+
+    .password-input-group {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: variables.$space-md;
+    }
+
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: variables.$space-sm;
+      cursor: pointer;
+    }
+
+    .custom-check {
+      width: 15px;
+      height: 15px;
+      border: 2px solid variables.$primaryText;
+      background: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    input[type="checkbox"]:checked + label .custom-check {
+      background-color: variables.$strongColor;
+      border-color: variables.$strongColor;
+      background-image: url("../assets/images/icon-check.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    .strength-meter {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: variables.$space-md;
+      background: variables.$primaryBg;
+    }
+
+    .strength-meter p {
+      font-size: variables.$text-sm;
+      color: variables.$secondaryText;
+      text-transform: uppercase;
+    }
+
+    .strength-meter #strength-status {
+      font-size: variables.$text-md;
+      color: variables.$primaryText;
+    }
+
+    .strength-bar {
+      display: flex;
+      gap: variables.$space-sm;
+      align-items: center;
+
+      .bars {
+        display: flex;
+        gap: variables.$space-xs;
+
+        div {
+          width: 10px;
+          height: 35px;
+          border: solid 1px variables.$primaryText;
+        }
+
+        .very-weak-password {
+          background: variables.$veryWeakColor;
+          border-color: variables.$veryWeakColor;
+        }
+
+        .weak-password {
+          background: variables.$weakColor;
+          border-color: variables.$weakColor;
+        }
+
+        .medium-password {
+          background: variables.$mediumColor;
+          border-color: variables.$mediumColor;
+        }
+
+        .strong-password {
+          background: variables.$strongColor;
+          border-color: variables.$strongColor;
+        }
+      }
+    }
+
+    #generate-btn {
+      text-transform: uppercase;
+      display: flex;
+      gap: variables.$space-md;
+      align-items: center;
+      justify-content: center;
+      padding: variables.$space-md;
+      background-color: variables.$strongColor;
+      font-weight: 600;
+      border: solid 1px variables.$strongColor;
+      width: 100%;
+    }
+
+    #generate-btn:hover {
+      background-color: transparent;
+      color: variables.$strongColor;
+    }
+
+    #generate-btn:hover img {
+      filter: invert(90%) sepia(50%) saturate(296%) hue-rotate(90deg) brightness(100%) contrast(100%);
+    }
+
+
+    #toast {
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      position: fixed;
+      top: 20px;
+      opacity: 0;
+      scale: 0.8;
+      transition: all 0.5s ease-in-out;
+
+      &.success {
+        color: variables.$secondaryBg;
+        background: variables.$strongColor;
+        opacity: 1;
+        scale: 1;
+      }
+
+      &.error {
+        opacity: 1;
+        scale: 1;
+        background: variables.$veryWeakColor;
+      }
+    }
+  }
+}
